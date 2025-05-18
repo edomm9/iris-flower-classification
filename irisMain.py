@@ -42,11 +42,25 @@ species = species_map[prediction[0]]
 st.subheader('🌼 Prediction Result')
 st.success(f'This flower is predicted to be **{species.capitalize()}**.')
 
-# Add a data visualization
+# Add data visualizations
 st.subheader('📊 Species Distribution')
-fig, ax = plt.subplots()
-sns.scatterplot(data=df, x='petal length (cm)', y='petal width (cm)', hue='species', ax=ax)
-ax.scatter(petal_length, petal_width, color='red', marker='*', s=200, label='Your Flower')
-plt.title('Iris Flowers vs Your Input')
+
+# Petal Length vs Petal Width
+fig1, ax1 = plt.subplots(figsize=(8, 6))
+sns.scatterplot(data=df, x='petal length (cm)', y='petal width (cm)', hue='species', ax=ax1, s=60, alpha=0.8, edgecolor='k')
+ax1.scatter(petal_length, petal_width, color='red', marker='*', s=200, label='Your Flower')
+plt.title('Petal Length vs Petal Width', fontsize=16)
 plt.legend()
-st.pyplot(fig)
+plt.xlabel('Petal Length (cm)', fontsize=14)
+plt.ylabel('Petal Width (cm)', fontsize=14)
+st.pyplot(fig1)
+
+# Sepal Length vs Sepal Width
+fig2, ax2 = plt.subplots(figsize=(8, 6))
+sns.scatterplot(data=df, x='sepal length (cm)', y='sepal width (cm)', hue='species', ax=ax2, s=60, alpha=0.8, edgecolor='k')
+ax2.scatter(sepal_length, sepal_width, color='red', marker='*', s=200, label='Your Flower')
+plt.title('Sepal Length vs Sepal Width', fontsize=16)
+plt.legend()
+plt.xlabel('Sepal Length (cm)', fontsize=14)
+plt.ylabel('Sepal Width (cm)', fontsize=14)
+st.pyplot(fig2)
